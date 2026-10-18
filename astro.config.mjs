@@ -1,12 +1,24 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { postLastModified } from './src/utils/postLastModified.js';
+
+const lastModified = postLastModified();
 
 // https://astro.build/config
 export default defineConfig({
   // Change this to your deployed URL. It is used for the RSS feed and sitemap.
   site: 'https://example.com',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // Add each post's `updated` (or publish) date to the sitemap
+      serialize(item) {
+        const date = lastModified[new URL(item.url).pathname];
+        if (date) item.lastmod = date.toISOString();
+        return item;
+      },
+    }),
+  ],
   // Post images get several sizes so phones download small versions
   image: {
     layout: 'constrained',

@@ -14,6 +14,8 @@ const {
   image = SOCIAL_IMAGE,
   imageAlt = SITE_TITLE,
   type = 'website',
+  publishedTime,
+  modifiedTime,
 } = Astro.props;
 
 // Social networks need absolute URLs, so these are built from `site` in astro.config.mjs
@@ -46,6 +48,12 @@ const imageURL = new URL(image, Astro.site);
     <meta property="og:url" content={pageURL} />
     <meta property="og:image" content={imageURL} />
     <meta property="og:image:alt" content={imageAlt} />
+    {publishedTime && (
+      <meta property="article:published_time" content={publishedTime.toISOString()} />
+    )}
+    {modifiedTime && (
+      <meta property="article:modified_time" content={modifiedTime.toISOString()} />
+    )}
 
     <!-- X card -->
     <meta name="twitter:card" content="summary_large_image" />
