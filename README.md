@@ -2,6 +2,8 @@
 
 A minimal, beginner-friendly blog template built with [Astro](https://astro.build). One centered column, system fonts, zero client-side JavaScript, and markdown posts.
 
+![The theme's homepage: the site title centered above a list of posts, each with its date, reading time, title and a short excerpt](.github/screenshot.png)
+
 ## Quick start
 
 ```bash
