@@ -1,6 +1,7 @@
 ---
 title: How to add a post
 date: 2026-07-15
+description: Create a markdown file, add a title and date, and write. Plus the one optional setting worth knowing about.
 ---
 
 Adding a post takes three steps:

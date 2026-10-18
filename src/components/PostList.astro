@@ -1,7 +1,8 @@
 ---
 import { formatDate } from '../utils/formatDate';
 import { readingTime } from '../utils/readingTime';
-import { SHOW_READING_TIME } from '../consts';
+import { excerpt } from '../utils/excerpt';
+import { SHOW_READING_TIME, SHOW_EXCERPTS } from '../consts';
 
 const { posts } = Astro.props;
 
@@ -11,12 +12,15 @@ function metaText(post) {
 }
 ---
 
-<ul class="post-list">
+<ul class:list={['post-list', { 'has-excerpts': SHOW_EXCERPTS }]}>
   {
     posts.map((post) => (
       <li>
         <span class="post-date">{metaText(post)}</span>
         <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+        {SHOW_EXCERPTS && (
+          <p class="post-excerpt">{post.data.description ?? excerpt(post.body)}</p>
+        )}
       </li>
     ))
   }

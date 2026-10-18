@@ -11,6 +11,10 @@ export const DATE_LOCALE = 'en-US';
 // Show an estimated reading time ("3 min read") next to each post's date.
 export const SHOW_READING_TIME = true;
 
+// Show a short excerpt under each post title on the homepage. Uses the
+// post's `description` frontmatter if set, otherwise its first paragraph.
+export const SHOW_EXCERPTS = true;
+
 // Shown in the footer and used for X card credits.
 // Set the URL to an empty string ('') to hide the footer link.
 export const X_HANDLE = '@yourhandle';

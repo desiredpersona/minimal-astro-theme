@@ -25,6 +25,7 @@ All in [`src/consts.js`](src/consts.js):
 | --- | --- | --- |
 | `DATE_LOCALE` | `'en-US'` | Date format: `'en-US'` → "August 1, 2026", `'en-GB'` → "1 August 2026" |
 | `SHOW_READING_TIME` | `true` | Show "3 min read" next to each post's date |
+| `SHOW_EXCERPTS` | `true` | Show a short summary under each title on the homepage |
 | `SOCIAL_IMAGE` | `'/og-image.png'` | Default image for X / social link previews |
 
 ## Writing posts

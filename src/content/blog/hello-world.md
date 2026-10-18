@@ -63,6 +63,16 @@ export const SHOW_READING_TIME = false;
 
 Every markdown file in `src/content/blog/` becomes a post, and the filename becomes the URL. The full steps are in [How to add a post](/blog/how-to-add-a-post/). The one trick worth knowing right away: add `draft: true` to a post's frontmatter and it disappears from the site until you remove it.
 
+### Excerpts on the homepage
+
+The homepage can show a short summary under each post title. It uses the post's `description` frontmatter if you've written one, and otherwise the post's first paragraph. Turn it on or off in `src/consts.js`:
+
+```js
+export const SHOW_EXCERPTS = true;
+```
+
+Set it to `false` for a bare list of titles.
+
 ### Sharing on X
 
 When someone shares a link to your site on X (or Facebook, LinkedIn, iMessage, Slack…), the theme provides everything needed for a rich preview card: the page title, a description, and an image. This works automatically for every page, but two things are worth setting up:
