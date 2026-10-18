@@ -24,6 +24,7 @@ All in [`src/consts.js`](src/consts.js):
 | Setting | Default | What it does |
 | --- | --- | --- |
 | `DATE_LOCALE` | `'en-US'` | Date format: `'en-US'` → "August 1, 2026", `'en-GB'` → "1 August 2026" |
+| `SHOW_READING_TIME` | `true` | Show "3 min read" next to each post's date |
 
 ## Writing posts
 

@@ -8,6 +8,9 @@ export const SITE_DESCRIPTION = 'A minimal blog built with Astro.';
 // 'en-GB' → "1 August 2026" (UK order). Any BCP 47 locale works.
 export const DATE_LOCALE = 'en-US';
 
+// Show an estimated reading time ("3 min read") next to each post's date.
+export const SHOW_READING_TIME = true;
+
 // Shown in the footer. Set the URL to an empty string ('') to hide the link.
 export const X_HANDLE = '@yourhandle';
 export const X_URL = 'https://x.com/yourhandle';

@@ -1,14 +1,21 @@
 ---
 import { formatDate } from '../utils/formatDate';
+import { readingTime } from '../utils/readingTime';
+import { SHOW_READING_TIME } from '../consts';
 
 const { posts } = Astro.props;
+
+function metaText(post) {
+  const date = formatDate(post.data.date);
+  return SHOW_READING_TIME ? `${date} · ${readingTime(post.body)}` : date;
+}
 ---
 
 <ul class="post-list">
   {
     posts.map((post) => (
       <li>
-        <span class="post-date">{formatDate(post.data.date)}</span>
+        <span class="post-date">{metaText(post)}</span>
         <a href={`/blog/${post.id}/`}>{post.data.title}</a>
       </li>
     ))

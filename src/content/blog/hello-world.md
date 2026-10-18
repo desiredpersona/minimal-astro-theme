@@ -51,6 +51,14 @@ export const DATE_LOCALE = 'en-US';
 
 Any other locale code works too, for example `'de-DE'` gives "1. August 2026". The date at the top of this post follows whatever you choose.
 
+### Reading time
+
+Next to each date you'll see an estimate like "3 min read", worked out from the post's word count. If you'd rather not show it, turn it off in `src/consts.js`:
+
+```js
+export const SHOW_READING_TIME = false;
+```
+
 ### Write a post
 
 Every markdown file in `src/content/blog/` becomes a post, and the filename becomes the URL. The full steps are in [How to add a post](/blog/how-to-add-a-post/). The one trick worth knowing right away: add `draft: true` to a post's frontmatter and it disappears from the site until you remove it.

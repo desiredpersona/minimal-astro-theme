@@ -2,6 +2,8 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { formatDate } from '../../utils/formatDate';
+import { readingTime } from '../../utils/readingTime';
+import { SHOW_READING_TIME } from '../../consts';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -15,6 +17,9 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 
 const dateText = formatDate(post.data.date);
+const metaText = SHOW_READING_TIME
+  ? `${dateText} · ${readingTime(post.body)}`
+  : dateText;
 ---
 
 <BaseLayout title={post.data.title}>
@@ -22,7 +27,7 @@ const dateText = formatDate(post.data.date);
     <header class="post-header">
       <h1>{post.data.title}</h1>
       <div class="post-meta">
-        <span class="post-date">{dateText}</span>
+        <span class="post-date">{metaText}</span>
       </div>
     </header>
     <Content />
