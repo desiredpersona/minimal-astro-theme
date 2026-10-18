@@ -5,9 +5,20 @@ import {
   SITE_DESCRIPTION,
   X_HANDLE,
   X_URL,
+  SOCIAL_IMAGE,
 } from '../consts';
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  image = SOCIAL_IMAGE,
+  imageAlt = SITE_TITLE,
+  type = 'website',
+} = Astro.props;
+
+// Social networks need absolute URLs, so these are built from `site` in astro.config.mjs
+const pageURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site);
 ---
 
 <!doctype html>
@@ -17,6 +28,7 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={pageURL} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
       rel="alternate"
@@ -25,6 +37,24 @@ const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
       href={new URL('rss.xml', Astro.site)}
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Open Graph: link previews on X, Facebook, LinkedIn, iMessage, Slack, etc. -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageURL} />
+    <meta property="og:image" content={imageURL} />
+    <meta property="og:image:alt" content={imageAlt} />
+
+    <!-- X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    {X_HANDLE && <meta name="twitter:site" content={X_HANDLE} />}
+    {X_HANDLE && <meta name="twitter:creator" content={X_HANDLE} />}
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageURL} />
+    <meta name="twitter:image:alt" content={imageAlt} />
   </head>
   <body>
     <main>

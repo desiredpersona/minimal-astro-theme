@@ -63,6 +63,48 @@ export const SHOW_READING_TIME = false;
 
 Every markdown file in `src/content/blog/` becomes a post, and the filename becomes the URL. The full steps are in [How to add a post](/blog/how-to-add-a-post/). The one trick worth knowing right away: add `draft: true` to a post's frontmatter and it disappears from the site until you remove it.
 
+### Sharing on X
+
+When someone shares a link to your site on X (or Facebook, LinkedIn, iMessage, Slack…), the theme provides everything needed for a rich preview card: the page title, a description, and an image. This works automatically for every page, but two things are worth setting up:
+
+1. **Set your real URL** as `site` in `astro.config.mjs`. Social networks need absolute links to fetch the image, so previews won't work until this points at your live domain.
+2. **Replace `public/og-image.png`** with your own 1200×630 image. It's the picture shown for the homepage and for any post that doesn't have its own.
+
+Each post can customise its card with two optional frontmatter fields:
+
+```yaml
+---
+title: My great idea
+date: 2026-08-17
+description: A one-sentence summary shown in the preview.
+image: /my-great-idea.png
+---
+```
+
+If you leave `description` out, the first paragraph of the post is used. The `image` is a file in `public/`. Your `X_HANDLE` from `src/consts.js` is credited on the card as well.
+
+#### How it works
+
+There's no JavaScript or API involved. When you post a link, X's server fetches the page and reads a handful of invisible `<meta>` tags in its `<head>`. The theme's layout file, `src/layouts/BaseLayout.astro`, writes those tags on every page. Right-click this page, choose "View page source", and you'll find them near the top:
+
+```html
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@yourhandle" />
+<meta name="twitter:title" content="Hello, world" />
+<meta name="twitter:description" content="Welcome to your new blog. This post is two things at once…" />
+<meta name="twitter:image" content="https://example.com/og-image.png" />
+```
+
+Each tag maps to one part of the card: `twitter:card` picks the layout (a large image above the text), `twitter:title` and `twitter:description` are the words, `twitter:image` is the picture, and `twitter:site` is the handle credited underneath. A second set of tags starting with `og:` (Open Graph) carries the same information in the format that Facebook, LinkedIn, iMessage and Slack read, so one page works everywhere.
+
+The values come from three places, in order of priority:
+
+1. The post's own frontmatter (`description`, `image`), if set.
+2. Otherwise, worked out from the post: the title from `title`, the description from the first paragraph.
+3. Otherwise, the site-wide defaults in `src/consts.js` (`SITE_TITLE`, `SITE_DESCRIPTION`, `SOCIAL_IMAGE`).
+
+Notice the image address is a full URL, not just `/og-image.png`. X fetches the picture from its own servers, so a relative path would be meaningless to it; that's why `site` in `astro.config.mjs` has to be your real domain.
+
 ### Change the look
 
 The entire design is one small file, `src/styles/global.css`. The colours are variables at the top of that file, so most changes are one line:

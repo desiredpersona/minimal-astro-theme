@@ -12,6 +12,12 @@ const blog = defineCollection({
     date: z.coerce.date(),
     // Set `draft: true` to hide a post from the site.
     draft: z.boolean().default(false),
+    // Optional text for link previews. Defaults to the post's first paragraph.
+    description: z.string().optional(),
+    // Optional preview image for X and other social networks, e.g. `image: /my-post.png`
+    // (a file in public/). Defaults to SOCIAL_IMAGE in src/consts.js.
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
   }),
 });
 

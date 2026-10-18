@@ -120,7 +120,8 @@ article a:hover {
 }
 
 article h2,
-article h3 {
+article h3,
+article h4 {
   margin: 2rem 0 0.75rem;
   font-weight: 500;
 }
@@ -131,6 +132,11 @@ article h2 {
 
 article h3 {
   font-size: 1.0625rem;
+}
+
+article h4 {
+  font-size: 1rem;
+  color: var(--muted);
 }
 
 article ul,

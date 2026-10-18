@@ -25,6 +25,7 @@ All in [`src/consts.js`](src/consts.js):
 | --- | --- | --- |
 | `DATE_LOCALE` | `'en-US'` | Date format: `'en-US'` → "August 1, 2026", `'en-GB'` → "1 August 2026" |
 | `SHOW_READING_TIME` | `true` | Show "3 min read" next to each post's date |
+| `SOCIAL_IMAGE` | `'/og-image.png'` | Default image for X / social link previews |
 
 ## Writing posts
 
@@ -44,6 +45,9 @@ Optional frontmatter:
 | Field | What it does |
 | --- | --- |
 | `draft: true` | Hides the post from the site entirely |
+| `description: ...` | Text for X/social link previews (defaults to the first paragraph) |
+| `image: /file.png` | Preview image for X/social cards, a file in `public/` (defaults to `og-image.png`) |
+| `imageAlt: ...` | Alt text for that image (defaults to the post title) |
 
 ## Project structure
 
