@@ -18,10 +18,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
-const dateText = formatDate(post.data.date);
-const metaText = SHOW_READING_TIME
-  ? `${dateText} · ${readingTime(post.body)}`
-  : dateText;
+const { date, updated } = post.data;
 ---
 
 <BaseLayout
@@ -30,13 +27,24 @@ const metaText = SHOW_READING_TIME
   image={post.data.image}
   imageAlt={post.data.imageAlt ?? post.data.title}
   type="article"
+  publishedTime={date}
+  modifiedTime={updated}
 >
   <article>
     <header class="post-header">
       <Nav />
       <h1>{post.data.title}</h1>
       <div class="post-meta">
-        <span class="post-date">{metaText}</span>
+        <span class="post-date">
+          <time datetime={date.toISOString()}>{formatDate(date)}</time>
+          {updated && (
+            <>
+              {' · Updated '}
+              <time datetime={updated.toISOString()}>{formatDate(updated)}</time>
+            </>
+          )}
+          {SHOW_READING_TIME && ` · ${readingTime(post.body)}`}
+        </span>
       </div>
     </header>
     <Content />

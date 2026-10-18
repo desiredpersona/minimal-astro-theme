@@ -1,6 +1,7 @@
 ---
 title: Hello, world
 date: 2026-08-01
+updated: 2026-10-18
 ---
 
 Welcome to your new blog. This post is two things at once: a short tutorial on using this theme, and a reference showing every markdown feature the theme knows how to render. Keep it around while you're learning, then delete it.
@@ -62,6 +63,22 @@ export const SHOW_READING_TIME = false;
 ### Write a post
 
 Every markdown file in `src/content/blog/` becomes a post, and the filename becomes the URL. The full steps are in [How to add a post](/blog/how-to-add-a-post/). The one trick worth knowing right away: add `draft: true` to a post's frontmatter and it disappears from the site until you remove it.
+
+### Updated dates
+
+Fixed a mistake or added a new section to an old post? Add an `updated` date to its frontmatter, next to the original `date`:
+
+```yaml
+---
+title: My great idea
+date: 2026-08-17
+updated: 2026-09-03
+---
+```
+
+The post then shows both dates, like the top of this post does. The homepage keeps listing posts by their original publish date, so an edit doesn't push an old post back to the top. The updated date also goes into the sitemap and the post's hidden `<meta>` tags, so search engines know the page has changed and should be read again.
+
+If the updated date comes before the publish date, the dev server shows an error so you can fix the typo.
 
 ### Navigation links
 
