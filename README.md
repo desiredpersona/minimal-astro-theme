@@ -42,6 +42,8 @@ date: 2026-08-17
 Post content goes here, in markdown.
 ```
 
+**Posts with images:** give the post its own folder (`my-post/index.md`, still served at `/blog/my-post/`) and put images beside it, referenced as `![alt](./photo.jpg)`. Astro then converts them to WebP, makes sizes for different screens, and lazy-loads them. Images in `public/` are served unchanged.
+
 Optional frontmatter:
 
 | Field | What it does |
@@ -57,7 +59,7 @@ Optional frontmatter:
 src/
 ├── consts.js              # your name, title, footer links — edit this first
 ├── content.config.ts      # frontmatter schema for posts
-├── content/blog/          # your posts live here (markdown)
+├── content/blog/          # your posts live here (markdown, plus a folder per post with images)
 ├── styles/global.css      # the entire design, one small CSS file
 ├── layouts/
 │   └── BaseLayout.astro   # <head>, page column, footer

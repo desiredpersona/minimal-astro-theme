@@ -155,7 +155,7 @@ For this theme, that turns a 3.5 KB readable source file into roughly 900 bytes 
 
 ## Part 2: Markdown reference
 
-Everything below is written in plain markdown. Open this file in `src/content/blog/hello-world.md` to see the source side by side with the result.
+Everything below is written in plain markdown. Open this file in `src/content/blog/hello-world/index.md` to see the source side by side with the result.
 
 ### Text
 
@@ -235,11 +235,30 @@ Tables are drawn with pipes and a row of dashes under the header:
 
 ### Images
 
-Put image files in the `public/` folder and reference them from the root with a leading slash. This one is `public/sample-image.svg`:
+Images are written as `![alt text](path)`. The alt text in square brackets describes the image for screen readers and shows if the image fails to load.
 
-![A grey rectangle labelled "Sample image"](/sample-image.svg)
+![A soft grey circle above rolling grey hills](./sample-photo.jpg)
 
-The text in square brackets is the alt text, which describes the image for screen readers and shows if the image fails to load.
+Where you keep an image decides what happens to it.
+
+**Next to your post: best for photos.** Give the post its own folder, put the image beside it, and refer to it with `./` at the start. This post is set up that way:
+
+```
+src/content/blog/hello-world/
+├── index.md          ← this post
+└── sample-photo.jpg  ← written as ![…](./sample-photo.jpg)
+```
+
+When you build the site, Astro optimises every image kept like this:
+
+- **Smaller files.** Photos are converted to WebP. This one goes from a 17 KB JPEG to a 6.5 KB WebP, and the saving on real phone photos is usually much bigger.
+- **The right size for each screen.** Astro makes several widths, from 640px up to the original, and each reader's browser downloads the one that fits their screen. That's the `image` setting in `astro.config.mjs`.
+- **No jumping.** The image's width and height are written into the page, so the browser saves the right amount of space before the image arrives and the text doesn't shift.
+- **Loads only when needed.** Images further down the page aren't downloaded until the reader scrolls near them.
+
+A post in a folder keeps the same address as a single file: `hello-world/index.md` is still `/blog/hello-world/`. Short posts without images can stay as single `.md` files, like `how-to-add-a-post.md`.
+
+**In `public/`: files used exactly as they are.** Anything in `public/` is copied to your site unchanged, and you refer to it from the root with a leading slash, like `/favicon.svg`. Use it for files that shouldn't be changed: SVG drawings, animated GIFs, and the `og-image.png` share image.
 
 ### Horizontal rules
 

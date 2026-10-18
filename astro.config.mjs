@@ -7,6 +7,10 @@ export default defineConfig({
   // Change this to your deployed URL. It is used for the RSS feed and sitemap.
   site: 'https://example.com',
   integrations: [sitemap()],
+  // Post images get several sizes so phones download small versions
+  image: {
+    layout: 'constrained',
+  },
   markdown: {
     // Light syntax-highlighting theme so code reads well on the site's
     // light grey code background (see --code-bg in global.css).
