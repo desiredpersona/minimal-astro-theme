@@ -8,6 +8,10 @@ export const SITE_DESCRIPTION = 'A minimal blog built with Astro.';
 // 'en-GB' → "1 August 2026" (UK order). Any BCP 47 locale works.
 export const DATE_LOCALE = 'en-US';
 
+// Add an ending to the day: "August 1st, 2026" or "1st August 2026".
+// Only applies to English locales. Set to false for "August 1, 2026".
+export const ORDINAL_DATES = true;
+
 // Show an estimated reading time ("3 min read") next to each post's date.
 export const SHOW_READING_TIME = true;
 

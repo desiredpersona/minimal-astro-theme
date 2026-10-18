@@ -45,12 +45,18 @@ Dates on the homepage and on each post are formatted by a single setting in `src
 export const DATE_LOCALE = 'en-US';
 ```
 
-| Value     | Renders as       |
-| --------- | ---------------- |
-| `'en-US'` | August 1, 2026   |
-| `'en-GB'` | 1 August 2026    |
+| Value     | Renders as         |
+| --------- | ------------------ |
+| `'en-US'` | August 1st, 2026   |
+| `'en-GB'` | 1st August 2026    |
 
-Any other locale code works too, for example `'de-DE'` gives "1. August 2026". The date at the top of this post follows whatever you choose.
+The "st" after the day is an ordinal ending. The theme picks the right one for every day (1st, 2nd, 3rd, 4th, 11th, 22nd…). If you prefer plain numbers ("August 1, 2026"), turn them off in the same file:
+
+```js
+export const ORDINAL_DATES = false;
+```
+
+Any other locale code works too, for example `'de-DE'` gives "1. August 2026". Ordinal endings only apply to English locales, so other languages always get their usual format. The date at the top of this post follows whatever you choose.
 
 ### Reading time
 
