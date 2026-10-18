@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
 import { formatDate } from '../../utils/formatDate';
 import { readingTime } from '../../utils/readingTime';
 import { excerpt } from '../../utils/excerpt';
@@ -32,6 +33,7 @@ const metaText = SHOW_READING_TIME
 >
   <article>
     <header class="post-header">
+      <Nav />
       <h1>{post.data.title}</h1>
       <div class="post-meta">
         <span class="post-date">{metaText}</span>

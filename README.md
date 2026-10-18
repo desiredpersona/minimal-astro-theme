@@ -27,6 +27,7 @@ All in [`src/consts.js`](src/consts.js):
 | `SHOW_READING_TIME` | `true` | Show "3 min read" next to each post's date |
 | `SHOW_EXCERPTS` | `true` | Show a short summary under each title on the homepage |
 | `SOCIAL_IMAGE` | `'/og-image.png'` | Default image for X / social link previews |
+| `NAV_LINKS` | `[{ label: 'Home', href: '/' }]` | Links above the title on post pages; `[]` hides them |
 
 ## Writing posts
 

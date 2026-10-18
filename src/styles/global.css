@@ -102,6 +102,28 @@ hr {
   margin-bottom: 2rem;
 }
 
+/* Nav links above the post title, with the divider underneath */
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0 0 2.5rem;
+  padding: 0 0 1rem;
+  border-bottom: 1px solid var(--line);
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+/* Quieter than in-text links: the nav is part of the page frame, not the content */
+.site-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  color: var(--text);
+}
+
 article h1 {
   margin: 0 0 0.5rem;
   font-size: 1.875rem;

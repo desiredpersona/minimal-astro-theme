@@ -63,6 +63,18 @@ export const SHOW_READING_TIME = false;
 
 Every markdown file in `src/content/blog/` becomes a post, and the filename becomes the URL. The full steps are in [How to add a post](/blog/how-to-add-a-post/). The one trick worth knowing right away: add `draft: true` to a post's frontmatter and it disappears from the site until you remove it.
 
+### Navigation links
+
+The links at the top of every post, above the title, come from a list in `src/consts.js`:
+
+```js
+export const NAV_LINKS = [
+  { label: 'Home', href: '/' },
+];
+```
+
+Each entry is a label and an address. Add a line to add a link, delete one to remove it, or reorder them to change their order. Links can point to pages on your site (`'/about/'`) or anywhere else (`'https://github.com/you'`). Set it to `[]` to hide the navigation completely. The homepage doesn't show these links, so the post list stays clean.
+
 ### Excerpts on the homepage
 
 The homepage can show a short summary under each post title. It uses the post's `description` frontmatter if you've written one, and otherwise the post's first paragraph. Turn it on or off in `src/consts.js`:

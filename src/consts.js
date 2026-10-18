@@ -24,3 +24,9 @@ export const X_URL = 'https://x.com/yourhandle';
 // A file in public/, ideally 1200×630 PNG or JPG. Posts can override it
 // with an `image` field in their frontmatter.
 export const SOCIAL_IMAGE = '/og-image.png';
+
+// Links shown above the title on post pages.
+// Add, remove, or reorder entries. Use [] to hide the navigation.
+export const NAV_LINKS = [
+  { label: 'Home', href: '/' },
+];

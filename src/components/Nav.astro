@@ -1,0 +1,17 @@
+---
+import { NAV_LINKS } from '../consts';
+---
+
+{
+  NAV_LINKS.length > 0 && (
+    <nav aria-label="Site">
+      <ul class="site-nav">
+        {NAV_LINKS.map(({ label, href }) => (
+          <li>
+            <a href={href}>{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
