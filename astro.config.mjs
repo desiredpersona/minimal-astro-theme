@@ -14,4 +14,7 @@ export default defineConfig({
       theme: 'github-light',
     },
   },
+  experimental: {
+    incrementalBuild: true,
+  },
 });
