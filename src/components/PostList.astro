@@ -1,13 +1,7 @@
 ---
-const { posts } = Astro.props;
+import { formatDate } from '../utils/formatDate';
 
-function formatDate(date) {
-  return date.toLocaleDateString('en-US', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  });
-}
+const { posts } = Astro.props;
 ---
 
 <ul class="post-list">

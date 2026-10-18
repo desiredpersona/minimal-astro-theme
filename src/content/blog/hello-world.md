@@ -36,6 +36,21 @@ Change the title, description, and footer handle to your own. Setting `X_URL` to
 
 One more setting lives in `astro.config.mjs`: set `site` to your deployed URL so the RSS feed and sitemap use the right address.
 
+### Switch between US and UK dates
+
+Dates on the homepage and on each post are formatted by a single setting in `src/consts.js`:
+
+```js
+export const DATE_LOCALE = 'en-US';
+```
+
+| Value     | Renders as       |
+| --------- | ---------------- |
+| `'en-US'` | August 1, 2026   |
+| `'en-GB'` | 1 August 2026    |
+
+Any other locale code works too, for example `'de-DE'` gives "1. August 2026". The date at the top of this post follows whatever you choose.
+
 ### Write a post
 
 Every markdown file in `src/content/blog/` becomes a post, and the filename becomes the URL. The full steps are in [How to add a post](/blog/how-to-add-a-post/). The one trick worth knowing right away: add `draft: true` to a post's frontmatter and it disappears from the site until you remove it.
@@ -126,6 +141,14 @@ function greet(name) {
 title: My great idea
 date: 2026-08-17
 draft: true
+```
+
+To show a change, use `diff` as the language and start each line with `+` for added, `-` for removed, or a space for unchanged:
+
+```diff
+ export const SITE_TITLE = 'Minimal Astro Theme';
+-export const DATE_LOCALE = 'en-US';
++export const DATE_LOCALE = 'en-GB';
 ```
 
 ### Tables

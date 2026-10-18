@@ -17,6 +17,14 @@ Open http://localhost:4321 — that's your site.
 2. **Edit `site` in [`astro.config.mjs`](astro.config.mjs)** — set your deployed URL (used by the RSS feed and sitemap).
 3. **Read the "Hello, world" post** on the running site — it's a built-in tutorial for the theme and a reference for every markdown feature. Delete the sample posts in `src/content/blog/` when you're ready to write your own.
 
+## Options
+
+All in [`src/consts.js`](src/consts.js):
+
+| Setting | Default | What it does |
+| --- | --- | --- |
+| `DATE_LOCALE` | `'en-US'` | Date format: `'en-US'` → "August 1, 2026", `'en-GB'` → "1 August 2026" |
+
 ## Writing posts
 
 Create a markdown file in `src/content/blog/`. The filename becomes the URL (`my-post.md` → `/blog/my-post/`):
