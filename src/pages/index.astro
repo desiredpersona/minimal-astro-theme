@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostList from '../components/PostList.astro';
+import { SITE_TITLE } from '../consts';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+// Newest posts first.
+const sorted = posts.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<BaseLayout>
+  <h1 class="site-title">{SITE_TITLE}</h1>
+  <hr />
+  <PostList posts={sorted} />
+</BaseLayout>

@@ -1,0 +1,22 @@
+---
+const { posts } = Astro.props;
+
+function formatDate(date) {
+  return date.toLocaleDateString('en-US', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+---
+
+<ul class="post-list">
+  {
+    posts.map((post) => (
+      <li>
+        <span class="post-date">{formatDate(post.data.date)}</span>
+        <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+      </li>
+    ))
+  }
+</ul>
