@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts } from '../../utils/posts';
+import { groupByTag, TAG_INDEX_MIN_POSTS } from '../../utils/tags';
+import { SITE_TITLE, SHOW_TAGS } from '../../consts';
+
+// Builds one page per tag, e.g. /tags/css/
+export async function getStaticPaths() {
+  if (!SHOW_TAGS) return [];
+
+  const tags = groupByTag(await getPosts());
+  return tags.map((tag) => ({
+    params: { tag: tag.slug },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+const count = tag.posts.length;
+---
+
+<BaseLayout
+  title={`Posts tagged “${tag.name}”`}
+  description={`${count} ${count === 1 ? 'post' : 'posts'} tagged “${tag.name}” on ${SITE_TITLE}.`}
+  noindex={count < TAG_INDEX_MIN_POSTS}
+>
+  <Nav />
+  <h1 class="site-title">Tagged “{tag.name}”</h1>
+  <hr />
+  <PostList posts={tag.posts} />
+  <p class="all-tags"><a href="/tags/">All tags</a></p>
+</BaseLayout>

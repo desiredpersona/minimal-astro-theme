@@ -2,6 +2,7 @@
 title: Hello, world
 date: 2026-08-01
 updated: 2026-10-18
+tags: [guide, markdown]
 ---
 
 Welcome to your new blog. This post is two things at once: a short tutorial on using this theme, and a reference showing every markdown feature the theme knows how to render. Keep it around while you're learning, then delete it.
@@ -85,6 +86,28 @@ updated: 2026-09-03
 The post then shows both dates, like the top of this post does. The homepage keeps listing posts by their original publish date, so an edit doesn't push an old post back to the top. The updated date also goes into the sitemap and the post's hidden `<meta>` tags, so search engines know the page has changed and should be read again.
 
 If the updated date comes before the publish date, the dev server shows an error so you can fix the typo.
+
+### Tags
+
+Group related posts by adding tags to their frontmatter:
+
+```yaml
+---
+title: My great idea
+date: 2026-08-17
+tags: [astro, css]
+---
+```
+
+Each post's tags appear as small links at the end of the post (scroll to the bottom of this one to see them). Every tag gets its own page listing its posts, like [/tags/guide/](/tags/guide/), and [/tags/](/tags/) lists every tag with how many posts it has. To link to that list from your navigation, add `{ label: 'Tags', href: '/tags/' }` to `NAV_LINKS`.
+
+A few details are handled for you:
+
+- **Spelling:** tags that differ only in capitals or spacing share one page, so "Web Dev" and "web dev" both go to `/tags/web-dev/`.
+- **Search engines:** a tag page with only one post asks search engines not to list it, and is left out of the sitemap. A page that just links to one post looks thin to search engines, and lots of them can count against the whole site. Once a second post uses the tag, the page is listed normally. You can change the number in `src/utils/tags.js`.
+- **Feeds:** tags are included in the RSS feed, where feed readers show them as categories.
+
+Don't want tags at all? Set `SHOW_TAGS = false` in `src/consts.js`.
 
 ### Navigation links
 

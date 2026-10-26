@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import { getPosts } from '../../utils/posts';
+import { groupByTag } from '../../utils/tags';
+import { SITE_TITLE, SHOW_TAGS } from '../../consts';
+
+// With tags turned off this page doesn't exist
+if (!SHOW_TAGS) return new Response(null, { status: 404 });
+
+const tags = groupByTag(await getPosts());
+---
+
+<BaseLayout title="Tags" description={`Every tag used on ${SITE_TITLE}.`}>
+  <Nav />
+  <h1 class="site-title">Tags</h1>
+  <hr />
+  <ul class="tag-index">
+    {
+      tags.map((tag) => (
+        <li>
+          <a href={`/tags/${tag.slug}/`}>{tag.name}</a>
+          <span class="tag-count">{tag.posts.length}</span>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

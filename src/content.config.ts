@@ -14,6 +14,9 @@ const blog = defineCollection({
       // Optional date of your last significant edit, e.g. `updated: 2026-09-03`.
       // Shown next to the publish date and used in the sitemap.
       updated: z.coerce.date().optional(),
+      // Optional list of tags, e.g. `tags: [astro, css]`. Each tag gets a page
+      // at /tags/<tag>/ listing its posts.
+      tags: z.array(z.string()).default([]),
       // Set `draft: true` to hide a post from the site.
       draft: z.boolean().default(false),
       // Optional text for link previews. Defaults to the post's first paragraph.

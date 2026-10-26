@@ -1,14 +1,16 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import { formatDate } from '../../utils/formatDate';
 import { readingTime } from '../../utils/readingTime';
 import { excerpt } from '../../utils/excerpt';
-import { SHOW_READING_TIME } from '../../consts';
+import { getPosts } from '../../utils/posts';
+import { groupByTag } from '../../utils/tags';
+import { SHOW_READING_TIME, SHOW_TAGS } from '../../consts';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const posts = await getPosts();
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },
@@ -19,6 +21,7 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 
 const { date, updated } = post.data;
+const tags = SHOW_TAGS ? groupByTag([post]) : [];
 ---
 
 <BaseLayout
@@ -48,5 +51,16 @@ const { date, updated } = post.data;
       </div>
     </header>
     <Content />
+    {
+      tags.length > 0 && (
+        <ul class="post-tags" aria-label="Tags">
+          {tags.map((tag) => (
+            <li>
+              <a href={`/tags/${tag.slug}/`} rel="tag">{tag.name}</a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
   </article>
 </BaseLayout>

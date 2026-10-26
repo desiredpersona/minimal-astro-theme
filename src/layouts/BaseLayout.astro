@@ -16,6 +16,9 @@ const {
   type = 'website',
   publishedTime,
   modifiedTime,
+  // Asks search engines not to list this page, while still following its
+  // links. Pages marked this way are also left out of the sitemap.
+  noindex = false,
 } = Astro.props;
 
 // Social networks need absolute URLs, so these are built from `site` in astro.config.mjs
@@ -31,6 +34,7 @@ const imageURL = new URL(image, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={pageURL} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
       rel="alternate"

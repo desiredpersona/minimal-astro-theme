@@ -256,6 +256,62 @@ article pre code {
   font-size: inherit;
 }
 
+/* Tags */
+
+/* Tag links at the end of a post */
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Quiet grey pills rather than the blue in-text link style */
+article .post-tags a {
+  display: block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  background: var(--code-bg);
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  text-decoration: none;
+}
+
+article .post-tags a:hover {
+  background: var(--line);
+  color: var(--text);
+}
+
+/* The list of every tag at /tags/ */
+.tag-index {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-index li {
+  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.tag-count {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.all-tags {
+  font-size: 0.875rem;
+}
+
+.all-tags a {
+  color: var(--text-secondary);
+}
+
 /* Footer */
 
 footer {

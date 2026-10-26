@@ -19,6 +19,11 @@ export const SHOW_READING_TIME = true;
 // post's `description` frontmatter if set, otherwise its first paragraph.
 export const SHOW_EXCERPTS = true;
 
+// Show each post's tags at the end of the post, and build a page per tag
+// at /tags/<tag>/ plus a list of all tags at /tags/. Set to false to turn
+// tags off completely; `tags` in your posts is then ignored.
+export const SHOW_TAGS = true;
+
 // Shown in the footer and used for X card credits.
 // Set the URL to an empty string ('') to hide the footer link.
 export const X_HANDLE = '@yourhandle';
