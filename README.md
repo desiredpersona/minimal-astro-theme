@@ -29,6 +29,7 @@ All in [`src/consts.js`](src/consts.js):
 | `ORDINAL_DATES` | `true` | Add "st", "nd", "rd" or "th" to the day; `false` gives "August 1, 2026" |
 | `SHOW_READING_TIME` | `true` | Show "3 min read" next to each post's date |
 | `SHOW_EXCERPTS` | `true` | Show a short summary under each title on the homepage |
+| `SHOW_TAGS` | `true` | Show tags on posts and build tag pages at `/tags/`; `false` turns tags off |
 | `SOCIAL_IMAGE` | `'/og-image.png'` | Default image for X / social link previews |
 | `NAV_LINKS` | `[{ label: 'Home', href: '/' }]` | Links above the title on post pages; `[]` hides them |
 
@@ -52,6 +53,8 @@ Optional frontmatter:
 | Field | What it does |
 | --- | --- |
 | `draft: true` | Hides the post from the site entirely |
+| `updated: 2026-09-03` | Shows "Updated" with this date next to the publish date, and uses it in the sitemap |
+| `tags: [astro, css]` | Tags linked at the end of the post, each with its own page at `/tags/<tag>/` |
 | `description: ...` | Text for X/social link previews (defaults to the first paragraph) |
 | `image: /file.png` | Preview image for X/social cards, a file in `public/` (defaults to `og-image.png`) |
 | `imageAlt: ...` | Alt text for that image (defaults to the post title) |
@@ -71,6 +74,7 @@ src/
 └── pages/
     ├── index.astro        # homepage
     ├── blog/[slug].astro  # renders each post
+    ├── tags/              # list of all tags, and a page per tag
     ├── rss.xml.js         # RSS feed at /rss.xml
     └── 404.astro          # not-found page
 ```
